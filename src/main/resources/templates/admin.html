@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head"></head>
+<script type="text/javascript" th:src="@{/webjars/chart.js/2.9.3/dist/Chart.bundle.min.js}"></script>
+
+<body>
+<nav th:replace="fragments/general :: navbar"></nav>
+<nav th:replace="fragments/general :: sidebar"></nav>
+
+<div class="content colorPrimary">
+    <div class="container-fluid">
+        <h1 class="mb-3 pageh1">Statistics</h1>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <div th:replace="fragments/charts :: gender-chart"></div>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <div th:replace="fragments/charts :: room-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <div th:replace="fragments/charts :: application-chart"></div>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <div th:replace="fragments/charts :: complaint-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div th:replace="fragments/charts :: complaint-year-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

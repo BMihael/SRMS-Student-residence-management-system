@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head"></head>
+
+<body>
+<nav th:replace="fragments/general :: navbar"></nav>
+<nav th:replace="fragments/general :: sidebar"></nav>
+
+<div class="content colorPrimary">
+    <div class="container-fluid">
+    <h1 class="mb-3 pageh1">New complaint</h1>
+        <div class="row">
+        	<div class="col-1"></div>
+            <div class="col-10">
+            <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong th:text="${success}"></strong>
+            </div>
+
+            <p class="text-left">Enter your complaint here</p>
+                <form role="form" method="POST" th:object="${complaint}" th:action="@{/dashboard/complaints/new}">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="10" cols="50" placeholder="I have comp..." name="body" th:text="*{body}"></textarea>
+                        <span  class="text-danger" th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></span>
+                    </div>
+                    <div class="text-center">
+                    <button type="submit" class="btn colorExtra2">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

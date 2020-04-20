@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/enableTooltips.js}"></script>
+    <title th:text="${pageTitle} ?: 'SRMS'"></title>
+</head>
+
+<nav th:fragment="navbar" class="navbar colorBackground navbar-light justify-content-between navbar-expand sticky-top header">
+    <a class="navbar-brand" th:href="@{/dashboard/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Dashboard</a>
+    <a class="navbar-brand" th:href="@{/dashboard/announcements}" sec:authorize="hasAnyRole('ROLE_STUDENT','ROLE_TENANT')">Dashboard</a>
+    <ul class="navbar-nav">
+        <span class="navbar-text" th:text="${#authentication.principal.fullName}"></span>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="navbardrop" data-toggle="dropdown"><i class="fas fa-user fa-lg"></i></a>
+            <div class="dropdown-menu" style="left: auto; right: 1px;">
+                <a class="dropdown-item" th:href="@{/dashboard/profile}">Edit profile</a>
+                <form class="dropdown-item" method="POST" th:action="@{/logout}">
+                    <input type="submit" value="Sign out" class="btn p-0" />
+                </form>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<nav th:fragment="sidebar" class="navbar colorBackground navbar-light sidebar">
+    <ul class="navbar-nav">
+    	<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Statistic" sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" th:href="@{/dashboard/admin}"><i class="fas fa-signal"></i></a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Announcements" sec:authorize="isAuthenticated()">
+            <a class="nav-link" th:href="@{/dashboard/announcements}"><i class="fas fa-scroll fa-lg"></i></a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Application" sec:authorize="hasAnyRole('ROLE_STUDENT','ROLE_TENANT')">
+            <a class="nav-link" th:href="@{/dashboard/application}"><i class="fas fa-pencil-alt fa-lg"></i></a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="New announcement" sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" th:href="@{/dashboard/announcements/new}"><i class="fas fa-comment-alt fa-lg"></i></a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tenants" sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" th:href="@{/dashboard/tenants}"><i class="fas fa-list-ul fa-lg"></i></a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Waiting list" sec:authorize="hasAnyRole('ROLE_STUDENT')">
+            <a class="nav-link" th:href="@{/dashboard/waiting}"><i class="fas fa-clock fa-lg"></i></a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="New complaint" sec:authorize="hasAnyRole('ROLE_TENANT')">
+            <a class="nav-link" th:href="@{/dashboard/complaints/new}"><i class="fas fa-exclamation fa-lg"></i></a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Complaints" sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" th:href="@{/dashboard/complaints}"><i class="fas fa-exclamation-triangle fa-lg"></i></a>
+        </li>
+    </ul>
+</nav>
+
+</html>

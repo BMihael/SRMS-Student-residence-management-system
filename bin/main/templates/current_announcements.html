@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head"></head>
+
+<body>
+<nav th:replace="fragments/general :: navbar"></nav>
+<nav th:replace="fragments/general :: sidebar"></nav>
+
+<div class="content colorPrimary">
+    <div class="container-fluid">
+    <h1 class="mb-3 pageh1">Announcements</h1>
+    <div class="container">
+        <div class="border border-dark mb-3" th:each="announcement : ${announcementList}">
+            <div class="row no-gutters colorExtra2">
+                <div class="col-md-6 text-center text-md-left">
+                    <div class="pt-1 p-md-2 font-weight-bold" th:text="${announcement.getTitle()}"></div>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="py-1 p-md-2" th:text="${'Posted by '+announcement.getAuthorAndDate()}"></div>
+                </div>
+            </div>
+            <div class="row no-gutters colorBackground">
+                <div class="col-md-12">
+                    <div class="p-1" th:text="${announcement.getBody()}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

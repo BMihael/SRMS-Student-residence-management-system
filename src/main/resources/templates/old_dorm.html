@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head(pageTitle='Studentski dom')"></head>
+
+<body>
+    <div class="container">
+        <h1 class="display-4 row justify-content-center mx-auto font-weight-bold">Stari Dom</h1>
+        <img th:src="@{images/stari_dio.jpg}" class="img-responsive rounded mx-auto d-block m-5 pb-5" alt="#">
+        <div class="card text-center">
+            <div class="card-body">
+                <p class="font-weight-normal text-center text-justify ">Smješten je u lijepoj klasicističkoj građevini, a dvokrevetne, jednokrevetne i trokrevetne sobe kvalitetno su 
+                    uređene i opremljene (wc/kupaonica, interenet, hladnjak u svakoj sobi). Dom A ima i opremljene studentske čajne kuhinje, učionice, 
+                    dvoranu za sastanke i svima omiljenu malu dvoranu sa spravama za vježbanje.
+                </p>
+                <a href="/" class="btn btn-success">Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

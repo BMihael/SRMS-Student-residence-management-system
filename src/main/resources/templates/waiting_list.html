@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head"></head>
+
+<body>
+<nav th:replace="fragments/general :: navbar"></nav>
+<nav th:replace="fragments/general :: sidebar"></nav>
+
+<div class="content colorPrimary">
+    <div class="container-fluid">
+    <h1 class="mb-3 pageh1">Waiting list</h1>
+    <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">JMBAG</th>
+                <th scope="col">Application date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${waitingList}">
+                <td th:text="${student.getUser().getFirstName()}"></td>
+                <td th:text="${student.getUser().getLastName()}"></td>
+                <td th:text="${student.getJmbag()}"></td>
+                <td th:text="${#temporals.format(student.getCreationDate(), 'dd.MM.yyyy.')}"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

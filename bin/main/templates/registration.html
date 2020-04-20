@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head"></head>
+
+<body>
+<div class="container-fluid">
+<div class="pb-5"></div>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-12 col-md-8">
+        <div class="shadow-sm rounded-sm border p-3">
+        <div class="text-center">
+            <h1 class="mb-3">Registration</h1>
+        </div>
+            <form class="pb-3" role="form" method="POST" th:object="${user}" th:action="@{/registration}">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Firstname">
+                    <span  class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="lastName" th:field="*{lastName}" placeholder="Lastname">
+                    <span  class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="username" th:field="*{username}" placeholder="Username">
+                    <span  class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" onchange="passwordValidation()">
+                    <span  class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="confirmPassword" id="confirmPass" placeholder="Confirm password" onchange="passwordValidation()">
+                    <span class="text-danger" id="notMatch"></span>
+                </div>
+
+                <!-- privacy policy -->
+                <div class="policy-check text-center">
+                    <label class="checkbox-policy">
+                        <a href="#" data-toggle="modal" data-target="#modalPrivacyPolicy">Privacy Policy</a>
+                        <input type="checkbox" name="policycheck" value="1" id="checkbox" onchange="passwordValidation()">
+                        I accept privacy policy
+                    </label>
+                </div>
+
+                <!-- Form submit button -->
+                <button type="submit" class="btn colorExtra2" id="button" disabled="disabled">Register</button>
+            </form>
+            	<span id="noAccountText"> <i class="fas fa-info-circle"></i> Already have an account? <a href="/login" th:href="@{/login}">Sign in</a></span>
+        </div>
+        </div>
+        <div class="col"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalPrivacyPolicy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Privacy Policy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/validation.js}"></script>
+</body>
+</html>

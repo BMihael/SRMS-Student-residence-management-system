@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="gender-chart" style="position: relative; height:250px;">
+    <canvas id="gender-chart"></canvas>
+    <script th:inline="javascript">
+        var ctx = document.getElementById('gender-chart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Male', 'Female'],
+                datasets: [{
+                    label: '# of Tenants',
+                    data: [
+                        /*[[${male}]], [[${female}]]*/
+                    ],
+                    backgroundColor: [
+                        'rgba(31, 84, 219, 0.4)',
+                        'rgba(201, 0, 111, 0.4)'
+                    ],
+                    borderColor: [
+                        'rgba(31, 84, 219, 1)',
+                        'rgba(201, 0, 111, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Tenants by gender'
+                }
+            }
+        });
+    </script>
+</div>
+
+<div th:fragment="room-chart" style="position: relative; height:250px;">
+    <canvas id="room-chart"></canvas>
+    <script th:inline="javascript">
+        var ctx = document.getElementById('room-chart').getContext('2d');
+        var myDoughnutChart  = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Empty', 'Half used', 'Full'],
+                datasets: [{
+                    label: '# of Rooms',
+                    data: [
+                        /*[[${emptyRooms}]], [[${halfRooms}]], [[${fullRooms}]]*/
+                    ],
+                    backgroundColor: [
+                        'rgba(2, 153, 77, 0.4)',
+                        'rgba(80, 2, 153, 0.4)',
+                        'rgba(255, 0, 0, 0.4)'
+                    ],
+                    borderColor: [
+                        'rgba(2, 153, 77, 1)',
+                        'rgba(80, 2, 153, 1)',
+                        'rgba(255, 0, 0, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Rooms by usage'
+                }
+            }
+        });
+    </script>
+</div>
+
+<div th:fragment="application-chart" style="position: relative; height:300px;">
+    <canvas id="application-chart"></canvas>
+    <script th:inline="javascript">
+        var ctx = document.getElementById('application-chart').getContext('2d');
+        var myDoughnutChart  = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Approved', 'Denied'],
+                datasets: [{
+                    label: '# of Male applicants',
+                    data: [
+                        /*[[${male}]], [[${maleDenied}]]*/
+                    ],
+                    backgroundColor: [
+                        'rgba(31, 84, 219, 0.4)',
+                        'rgba(31, 84, 219, 0.4)',
+                    ],
+                    borderColor: [
+                        'rgba(31, 84, 219, 1)',
+                        'rgba(31, 84, 219, 1)',
+                    ],
+                    borderWidth: 1
+                },
+                    {
+                        label: '# of Female applicants',
+                        data: [
+                            /*[[${female}]], [[${femaleDenied}]]*/
+                        ],
+                        backgroundColor: [
+                            'rgba(201, 0, 111, 0.4)',
+                            'rgba(201, 0, 111, 0.4)',
+                        ],
+                        borderColor: [
+                            'rgba(201, 0, 111, 1)',
+                            'rgba(201, 0, 111, 1)',
+                        ],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Applications by status'
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</div>
+
+<div th:fragment="complaint-chart" style="position: relative; height:300px;">
+    <canvas id="complaint-chart"></canvas>
+    <script th:inline="javascript">
+        var ctx = document.getElementById('complaint-chart').getContext('2d');
+        var myComplaintChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['3 days ago', '2 days ago', '1 day ago', 'Today'],
+                datasets: [{
+                    label: '# of new complaints',
+                    data: [
+                        /*[[${dayago3}]], [[${dayago2}]], [[${dayago1}]], [[${today}]]*/
+                    ],
+                    backgroundColor: [
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)'
+                    ],
+                    borderWidth: 3,
+                    lineTension: 0.2,
+                    fill: false
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Complaints in the past 3 days'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</div>
+
+<div th:fragment="complaint-year-chart" style="position: relative; height:300px;">
+    <canvas id="complaint-year-chart"></canvas>
+    <script th:inline="javascript">
+        var ctx = document.getElementById('complaint-year-chart').getContext('2d');
+        var myYearComplaintChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: '# of complaints',
+                    data: [
+                        /*[[${m1}]],[[${m2}]],[[${m3}]],[[${m4}]],[[${m5}]],[[${m6}]],[[${m7}]],[[${m8}]],[[${m9}]],[[${m10}]],[[${m11}]],[[${m12}]]*/
+                    ],
+                    backgroundColor: [
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)',
+                        'rgba(252, 148, 3, 0.4)'
+                    ],
+                    borderColor: [
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)',
+                        'rgba(252, 148, 3, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Complaints in current year'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</div>
+
+</html>

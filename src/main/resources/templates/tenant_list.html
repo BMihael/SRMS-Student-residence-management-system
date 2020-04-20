@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head"></head>
+
+<body>
+<nav th:replace="fragments/general :: navbar"></nav>
+<nav th:replace="fragments/general :: sidebar"></nav>
+
+<div class="content colorPrimary">
+    <div class="container-fluid">
+    <h1 class="mb-3 pageh1">Tenants list</h1>
+    <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+	    <div class="text-right pb-3">
+	    <input type="text" id="searchName" onkeyup="searchForName()" placeholder="Search for names.." title="Type in a name">
+	    </div>
+        <table id="tenantTable" class="table table-hover table-bordered colorBackground">
+            <thead>
+            <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">JMBAG</th>
+                <th scope="col">Room</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tenant : ${tenantList}">
+                <td th:text="${tenant.getUser().getFirstName()}"></td>
+                <td th:text="${tenant.getUser().getLastName()}"></td>
+                <td th:text="${tenant.getJmbag()}"></td>
+                <td th:text="${tenant.getTenant().getRoom().getName()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/search.js}"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/general :: head"></head>
+
+<body>
+<nav th:replace="fragments/general :: navbar"></nav>
+<nav th:replace="fragments/general :: sidebar"></nav>
+
+<div class="content colorPrimary">
+    <div class="container-fluid">
+    <h1 class="mb-3 pageh1">Application</h1>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                    <div th:if="${created}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong th:text="${created}"></strong>
+                    </div>
+
+                    <div th:if="${deleted}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong th:text="${deleted}"></strong>
+                    </div>
+
+                    <div th:if="${status}" class="alert alert-info alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <span th:text="${status}"></span>
+                    </div>
+
+                    <form role="form" method="POST" th:object="${application}" th:action="@{/dashboard/application}">
+                        <div class="form-row">
+                            <div class="col-5">
+                                <!-- birth date -->
+                                <div class="form-group">
+                                    <label for="birthDate">Birth date:</label>
+                                    <input class="form-control" type="date" id="birthDate" name="birthDate" placeholder="Birth Date" th:value="${birthDate} ?: ${now}" th:attr="max=${now}" th:readonly="${readonly}">
+                                    <span  class="text-danger" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <!-- jmbag -->
+                                <div class="form-group">
+                                    <label for="jmbag">JMBAG:</label>
+                                    <input class="form-control" type="text" placeholder="JMBAG" id="jmbag" th:field="*{jmbag}" th:readonly="${readonly}">
+                                    <span  class="text-danger" th:if="${#fields.hasErrors('jmbag')}" th:errors="*{jmbag}"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- address -->
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" class="form-control" placeholder="Address" id="address" th:field="*{address}" th:readonly="${readonly}">
+                            <span  class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+                        </div>
+                        <!-- university -->
+                        <div class="form-group">
+                            <label for="university">University:</label>
+                            <input type="text" class="form-control" placeholder="University" id="university" th:field="*{university}" th:readonly="${readonly}">
+                            <span  class="text-danger" th:if="${#fields.hasErrors('university')}" th:errors="*{university}"></span>
+                        </div>
+                        <!-- gender -->
+                        <div class="form-radio">
+                            <label>Gender:</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="MALE" th:checked="${gender} == MALE" th:disabled="${readonly}">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="FEMALE" th:checked="${gender} == FEMALE" th:disabled="${readonly}">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                        </div>
+
+                        <div th:if="${readonly == false}">
+                        <button type="submit" class="btn colorExtra2">Submit</button>
+                        </div>
+                    </form>
+
+                    <div th:if="${readonly == true}">
+                        <div sec:authorize="hasRole('ROLE_STUDENT')">
+                            <form method="POST" th:action="@{/dashboard/application/delete}">
+                                <input type="submit" value="Remove application" class="btn colorExtra2" />
+                            </form>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_TENANT')">
+                            <form method="POST" th:action="@{/dashboard/application/delete}">
+                                <input type="submit" value="Move out" class="btn colorExtra2" />
+                            </form>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

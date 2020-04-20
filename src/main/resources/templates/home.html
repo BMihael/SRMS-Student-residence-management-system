@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general :: head(pageTitle='Studentski dom')"></head>
+
+<body>
+<div class="container">
+    <nav class="navbar bg-light navbar-light justify-content-between navbar-expand">
+        <a class="navbar-brand">Studentski dom</a>
+        <ul class="navbar-nav">
+            <li class="nav-item p-1">
+                <a class="nav-link colorExtra1 rounded" th:href="@{/login}">Sign in</a>
+            </li>
+            <li class="nav-item p-1">
+                <a class="nav-link colorExtra1 rounded" th:href="@{/registration}">Sign up</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="image w-100" th:src="@{images/studentski_dom.jpg}"></div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-6 p-4">
+            <h2 class="p-3">Adresa</h2>
+            <span>
+				   Studentski dom, Julija Merlića 9, 42000
+				   <br/>
+				   <br/>
+				   Kontakt za informacije i smještaj:
+				   <br/>
+				   Telefon: 042 332 910
+				   Fax: 042 332 916
+                </br>
+                E-mail: recepcija@scvz.hr
+			</span>
+        </div>
+        <div class="col-md-6 p-4">
+            <h2 class="p-3">Radno vrijeme</h2>
+            <span>
+			 Voditelj smještaja i referent za smještaj: radnim danom od 7-15
+			 <br/>
+			 <br/>
+			 Recepcija: svaki dan od 0-24
+			</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row py-3">
+        <div class="col-md-6">
+            <img class="w-100" th:src="@{images/studentski_dom_iz_zraka.jpg}">
+        </div>
+        <div class="col-md-6">
+            <span>Sastoji se od dva studentska doma, studentskog restorana, Student servisa, studentskog kluba, ambulante, samoposlužne praonice veša, te ostalih popratnih sadržaja važnh studentima kao što je fitness park na otvorenom, spremište bicikla, dvorana sa spravama za vježbanje...</span>
+        </div>
+    </div>
+
+    <div class="row py-5">
+        <div class="col-md-6">
+            <img class="w-100" th:src="@{images/studentski_dom_stari_i_novi.jpg}">
+        </div>
+        <div class="col-md-6 text-center">
+		<span>
+			Studentski dom dijeli se na stari i novi dio.
+            </br>
+            Pogledaj informacije vezane za <a href="/old-dorm" th:href="@{/old-dorm}">stari</a> dom
+            </br>
+            Pogledaj informacije vezane za <a href="/new-dorm" th:href="@{/new-dorm}">novi</a> dom
+		</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-12 text-center pb-3">
+            <span>Sva prava pridržana © 2020 STUDENTSKI DOM</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
